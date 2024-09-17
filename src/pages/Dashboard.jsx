@@ -18,8 +18,9 @@ import Typography from "@mui/material/Typography";
 import { Outlet } from "react-router-dom";
 import MenuListItems from "../components/MenuListItems";
 import { Avatar, Button, Menu, MenuItem, Tooltip } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
-const drawerWidth = 200;
+const drawerWidth = 180;
 
 function Dashboard(props) {
   const { window } = props;
@@ -50,7 +51,9 @@ function Dashboard(props) {
     setAnchorElUser(null);
   };
 
-  const settings = ["Profile", "Dashboard", "Logout"];
+  const settings = ["Profile", "Dashboard", "Logout","Register","Login"];
+
+  const navigate = useNavigate()
 
   return (
     <Box sx={{ display: "flex"}}>
@@ -131,6 +134,9 @@ function Dashboard(props) {
               ))}
             </Menu>
           </Box>
+
+          <Button variant="contained"
+          onClick={()=>navigate("/register")}>Sign Up</Button>
         </Toolbar>
       </AppBar>
       <Box
@@ -175,6 +181,7 @@ function Dashboard(props) {
           <MenuListItems />
         </Drawer>
       </Box>
+      <Toolbar/>
       <Box
         component="main"
         sx={{
@@ -184,8 +191,8 @@ function Dashboard(props) {
           ml: { sm: `${drawerWidth}px` }
         }}
       >
-        <Toolbar />
-        <Outlet />
+       
+        <Outlet/>
       </Box>
     </Box>
   );

@@ -25,6 +25,10 @@ const blogSlice = createSlice({
             state.loading = false;
            state[payload.endpoint] = payload.data.data
         },
+        postBlogSuccess: (state,{payload})=>{
+            state.loading = false;
+            state[payload.endpoint] = payload.data.data
+        },
     }
 })
 

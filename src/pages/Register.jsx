@@ -1,8 +1,70 @@
+import { Avatar, Box, Grid, Grid2, Typography } from '@mui/material'
+import { Container } from '@mui/material'
 import React from 'react'
+import RegisterForm, { SignupSchema } from '../components/RegisterForm'
+import { Formik } from 'formik'
+import { Link } from 'react-router-dom'
+import useAuthCall from '../hooks/useAuthCall'
 
 const Register = () => {
+
+  const {register} = useAuthCall()
   return (
-    <div>Register</div>
+    <Container maxWidth="xl">
+
+        <Grid2 
+        container
+        justifyContent="center"
+        >
+
+        <Grid2 item xs={12} sm={10} md={6}>
+        <Avatar
+            sx={{
+              backgroundColor: "secondary.main",
+              m: "auto",
+              width: 40,
+              height: 40,
+            }}
+          >
+            
+          </Avatar>
+          <Typography
+            variant="h4"
+            align="center"
+            mb={3}
+            mt={2}
+            color="secondary.main"
+          >
+            Sign Up
+          </Typography>
+
+          <Formik
+          initialValues={{
+              username: "",
+              firstName: "",
+              lastName: "",
+              email: "",
+              password: "",
+              image:"",
+              city:"",
+              bio:""
+            }}
+            validationSchema={SignupSchema}
+            onSubmit={(values, actions) => {
+              register(values);
+              actions.resetForm();
+              actions.setSubmitting(false);
+            }}
+            component={(props) => <RegisterForm {...props} />}>
+
+            </Formik>
+          <Box sx={{ textAlign: "center", mt: 2, color: "" }}>
+            <Link to="/login">Already have an account? Sign in</Link>
+          </Box>
+        </Grid2>
+
+        </Grid2>
+    </Container>
   )
 }
 

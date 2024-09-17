@@ -41,8 +41,9 @@ const BlogList = () => {
      
         {blogs.map((blog) => (
           
-          <Card component="div" sx={{display:"flex", marginBottom:2,height:"200px",borderRadius:"1rem"}}>
-            <CardMedia image={blog.image} sx={{height:"100%", width:"250px",padding:5}}/>
+          <Card component="div" sx={{display:"flex", flexDirection:{xs:"column",sm:"row"}, marginBottom:2,height:{xs:"350px",sm:"200px"},borderRadius:"1rem"}}>
+
+            <CardMedia image={blog.image} sx={{height:{xs:"150px",sm:"100%"}, width:{sm:"250px"},padding:{xs:9,sm:5}}}/>
 
             <CardContent sx={{width:"100%",display:"inline-block",padding:3,marginBottom:3}}>
               <Typography variant="h6" component="h2">{blog.title} </Typography>
@@ -65,7 +66,7 @@ const BlogList = () => {
         
           
         ))}
-        <Stack spacing={2} textAlign="center">
+        <Stack spacing={2} sx={{margin:"auto"}}>
       <Pagination count={10} color="warning"/>
      
     </Stack>

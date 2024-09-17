@@ -7,7 +7,7 @@ import HalloCard from '../components/HalloCard'
 
 const Home = () => {
   return (
-   <Container  maxWidth="lg" sx={{border:"2px solid red"}}>
+   <Container  maxWidth="lg" sx={{display:"flex",justifyContent:"flex-end"}}>
 
     <Grid2 container spacing={3} width="100%">
         <Grid2 item size={10} sx={{flexGrow:5}}>
