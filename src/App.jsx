@@ -15,7 +15,7 @@ function App() {
       primary: {
         main: "#232946",
         second: "#F4F6FF",
-        contrastText:"#F8D6AC"
+        contrastText:"#F2C94C"
       },
       secondary: {
         main: "#BBEBEE",

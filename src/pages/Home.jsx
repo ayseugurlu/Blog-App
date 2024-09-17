@@ -3,17 +3,19 @@ import React from 'react'
 import BlogList from '../components/BlogList'
 import WeatherCard from '../components/WeatherCard'
 import NewsCard from '../components/NewsCard'
+import HalloCard from '../components/HalloCard'
 
 const Home = () => {
   return (
-   <Container  maxWidth="lg">
+   <Container  maxWidth="lg" sx={{border:"2px solid red"}}>
 
-    <Grid2 container>
-        <Grid2 item size={10}>
+    <Grid2 container spacing={3} width="100%">
+        <Grid2 item size={10} sx={{flexGrow:5}}>
+        <HalloCard/>
         <BlogList/>
 
         </Grid2>
-        <Grid2 item size={2}>
+        <Grid2 item size={2} sx={{flexGrow:1}}>
           <Grid2 item size={6}>
               <WeatherCard/>
           </Grid2>

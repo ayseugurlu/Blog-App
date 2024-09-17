@@ -19,7 +19,7 @@ import { Outlet } from "react-router-dom";
 import MenuListItems from "../components/MenuListItems";
 import { Avatar, Button, Menu, MenuItem, Tooltip } from "@mui/material";
 
-const drawerWidth = 240;
+const drawerWidth = 200;
 
 function Dashboard(props) {
   const { window } = props;
@@ -53,8 +53,8 @@ function Dashboard(props) {
   const settings = ["Profile", "Dashboard", "Logout"];
 
   return (
-    <Box sx={{ display: "flex", margin:"auto"}}>
-      <CssBaseline />
+    <Box sx={{ display: "flex"}}>
+      <CssBaseline/>
       <AppBar
         position="fixed"
         sx={{
@@ -181,6 +181,7 @@ function Dashboard(props) {
           flexGrow: 1,
           p: 3,
           width: { sm: `calc(100% - ${drawerWidth}px)` },
+          ml: { sm: `${drawerWidth}px` }
         }}
       >
         <Toolbar />

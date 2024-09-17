@@ -10,8 +10,18 @@ import {
   CardContent,
   CardMedia,
   Container,
+  Pagination,
+  Stack,
   Typography,
 } from "@mui/material";
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import ForumIcon from '@mui/icons-material/Forum';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import { btnStyle } from "../styles/globalStyle";
+
+
+
 
 const BlogList = () => {
   const { getBlogData } = useBlogCall();
@@ -26,33 +36,39 @@ const BlogList = () => {
   return (
     <Container
       maxWidth="lg"
-      sx={{ marginLeft: "10rem", backgroundColor: "primary.second" }}
+      sx={{  backgroundColor: "primary.second" ,padding:5,borderRadius:3}}
     >
-      <Typography>Blogs</Typography>
-
-      <Box>
+     
         {blogs.map((blog) => (
-          <Card  sx={{ display: "flex" }}>
-            <CardMedia
-              sx={{  }}
-              image={blog.image}
-              title={blog.title}
-            />
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
-                {blog.title}
+          
+          <Card component="div" sx={{display:"flex", marginBottom:2,height:"200px",borderRadius:"1rem"}}>
+            <CardMedia image={blog.image} sx={{height:"100%", width:"250px",padding:5}}/>
+
+            <CardContent sx={{width:"100%",display:"inline-block",padding:3,marginBottom:3}}>
+              <Typography variant="h6" component="h2">{blog.title} </Typography>
+              <Typography variant="body2" sx={{height:"60px",overflow:"hidden",textOverflow:"ellipsis"}}>
+                {blog.content} 
               </Typography>
-              <Typography variant="body2" sx={{width:"200px",height:"50px", color: "text.secondary" ,overflow:"hidden"}}>
-                {blog.content}
-              </Typography>
+                <Button sx={{color:"primary.main"}}>
+                  <MoreHorizIcon/>
+                </Button>
+              
+
+              <CardActions sx={{justifyContent:"center"}}>
+                <Button sx={btnStyle}><FavoriteBorderIcon/></Button>
+                <Button sx={btnStyle}><ForumIcon/></Button>
+                <Button sx={btnStyle}><VisibilityIcon/>{blog.countOfVisitors}</Button>
+              </CardActions>
             </CardContent>
-            <CardActions>
-              <Button size="small">Share</Button>
-              <Button size="small">Learn More</Button>
-            </CardActions>
           </Card>
+
+        
+          
         ))}
-      </Box>
+        <Stack spacing={2} textAlign="center">
+      <Pagination count={10} color="warning"/>
+     
+    </Stack>
     </Container>
   );
 };
