@@ -1,10 +1,10 @@
-import { Avatar, Box, Grid, Grid2, Typography } from '@mui/material'
+import { Avatar, Box, Grid2, Typography } from '@mui/material'
 import { Container } from '@mui/material'
 import React from 'react'
 import RegisterForm, { SignupSchema } from '../components/RegisterForm'
 import { Formik } from 'formik'
-import { Link } from 'react-router-dom'
 import useAuthCall from '../hooks/useAuthCall'
+import { NavLink } from 'react-router-dom'
 
 const Register = () => {
 
@@ -17,7 +17,7 @@ const Register = () => {
         justifyContent="center"
         >
 
-        <Grid2 item xs={12} sm={10} md={6}>
+        <Grid2  size={{xs:12, sm:10 ,md:6}}>
         <Avatar
             sx={{
               backgroundColor: "secondary.main",
@@ -59,7 +59,7 @@ const Register = () => {
 
             </Formik>
           <Box sx={{ textAlign: "center", mt: 2, color: "" }}>
-            <Link to="/login">Already have an account? Sign in</Link>
+            <NavLink style={{color:"gray", textDecoration:"none"}} to="/login">Already have an account? Login</NavLink>
           </Box>
         </Grid2>
 

@@ -1,7 +1,10 @@
-import { Box, Button, Container, TextField } from '@mui/material';
+
 import { Form } from 'formik';
 import React from 'react'
 import * as Yup from "yup";
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import { Box, Button, Container, InputAdornment, TextField } from '@mui/material';
 
 export const SignupSchema = Yup.object().shape({
   username: Yup.string()
@@ -33,6 +36,10 @@ const RegisterForm = ({
   handleBlur,
   isSubmitting,
 }) => {
+
+  const [showPassword, setShowPassword] = React.useState(false);
+
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
   return (
     <Container sx={{width:"30rem"}}>
     <Form>
@@ -105,7 +112,20 @@ const RegisterForm = ({
           label="Password"
           name="password"
           id="password"
-          type="password"
+          type={showPassword ? 'text' : 'password'}
+          slotProps={{
+          input: {
+            endAdornment: (
+              <InputAdornment position="start"
+              sx={{cursor:"pointer"}}
+              aria-label="toggle password visibility"
+                  onClick={handleClickShowPassword}
+                  edge="end">
+                {showPassword ? <VisibilityOff/> : <Visibility />}
+              </InputAdornment>
+            ),
+          },
+        }}
           variant="outlined"
           value={values.password}
           onChange={handleChange}

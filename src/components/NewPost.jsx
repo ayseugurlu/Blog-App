@@ -8,10 +8,10 @@ import SaveIcon from "@mui/icons-material/Save";
 import PrintIcon from "@mui/icons-material/Print";
 import ShareIcon from "@mui/icons-material/Share";
 import { Form, Formik } from "formik";
-import { TextField } from "@mui/material";
+import { TextField, FormControl, InputLabel, Select, MenuItem, Typography, Grid2, Container, Toolbar } from "@mui/material";
 import useBlogCall from "../hooks/useBlogCall";
 
-const actions = [
+const icons = [
   { icon: <FileCopyIcon />, name: "Copy" },
   { icon: <SaveIcon />, name: "Save" },
   { icon: <PrintIcon />, name: "Print" },
@@ -20,8 +20,16 @@ const actions = [
 
 export default function NewPost() {
   const { postBlogData } = useBlogCall();
+
   return (
-    <Box sx={{ height: 320, transform: "translateZ(0px)", flexGrow: 1 }}>
+
+    <Container maxWidth="lg">
+
+      <Grid2 container>
+        <Grid2 size={{xs:12}}>
+        <Box sx={{ height: 320, transform: "translateZ(0px)", flexGrow: 1,  }}>
+    <Typography align="center"
+            mb={2} variant="h5" component="h2">New Post</Typography>
       <Formik
         initialValues={{
           categoryId: "",
@@ -33,92 +41,87 @@ export default function NewPost() {
         onSubmit={(values, actions) => {
           // same shape as initial values
           console.log(values);
-          postBlogData(values);
+          postBlogData("blogs/", values);
           actions.resetForm();
           actions.setSubmitting(false);
         }}
       >
-        <Form>
-          <TextField
-            label="Title"
-            name="title"
-            type="text"
-            variant="outlined"
-            value={values.title}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            helperText={touched.title && errors.title}
-            error={touched.title && Boolean(errors.title)}
-            fullWidth
-          />
-          <TextField
-            label="Image URL"
-            name="image"
-            type="text"
-            variant="outlined"
-            value={values.image}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            helperText={touched.image && errors.image}
-            error={touched.image && Boolean(errors.image)}
-            fullWidth
-          />
-          <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label">Category</InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={values.categoryId}
-              name="categoryId"
-              label="Category"
+        {({
+          values,
+          errors,
+          touched,
+          handleChange,
+          handleBlur,
+          handleSubmit,
+          isSubmitting,
+        }) => (
+          <Form onSubmit={handleSubmit}>
+            <TextField
+              label="Title"
+              name="title"
+              type="text"
+              variant="outlined"
+              value={values.title}
               onChange={handleChange}
-            >
-              {[].map((category) => (
-                <MenuItem key={category._id} value={category._id}>
-                  {category.name}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-          <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label">Category</InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={info.categoryId}
-              name="categoryId"
-              label="Category"
+              onBlur={handleBlur}
+              helperText={touched.title && errors.title}
+              error={touched.title && Boolean(errors.title)}
+              fullWidth
+            />
+            <TextField
+              label="Image URL"
+              name="image"
+              type="text"
+              variant="outlined"
+              value={values.image}
               onChange={handleChange}
-            >
-              {[].map((category) => (
-                <MenuItem key={category._id} value={category._id}>
-                  {category.name}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-          <TextField
-            label="Content"
-            name="content"
-            type="text"
-            variant="outlined"
-            value={values.content}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            helperText={touched.content && errors.content}
-            error={touched.content && Boolean(errors.content)}
-            multiline
-            rows={4}
-            fullWidth
-          />
-        </Form>
+              onBlur={handleBlur}
+              helperText={touched.image && errors.image}
+              error={touched.image && Boolean(errors.image)}
+              fullWidth
+            />
+            <FormControl fullWidth>
+              <InputLabel id="demo-simple-select-label">Category</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={values.categoryId}
+                name="categoryId"
+                label="Category"
+                onChange={handleChange}
+              >
+                {[].map((category) => (
+                  <MenuItem key={category._id} value={category._id}>
+                    {category.name}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+
+            <TextField
+              label="Content"
+              name="content"
+              type="text"
+              variant="outlined"
+              value={values.content}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              helperText={touched.content && errors.content}
+              error={touched.content && Boolean(errors.content)}
+              multiline
+              rows={4}
+              fullWidth
+            />
+          </Form>
+        )}
       </Formik>
+      <Toolbar/>
       <SpeedDial
         ariaLabel="SpeedDial basic example"
         sx={{ position: "absolute", bottom: 16, right: 16 }}
         icon={<SpeedDialIcon />}
       >
-        {actions.map((action) => (
+        {icons.map((action) => (
           <SpeedDialAction
             key={action.name}
             icon={action.icon}
@@ -127,5 +130,14 @@ export default function NewPost() {
         ))}
       </SpeedDial>
     </Box>
+        </Grid2>
+        <Grid2 size={{xs:12}}>
+
+        </Grid2>
+      </Grid2>
+
+      
+    </Container>
+    
   );
 }

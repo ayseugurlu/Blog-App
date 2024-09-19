@@ -11,7 +11,7 @@ const HalloCard = () => {
         Explore insights, tips, and stories, and feel free to share your own thoughts and experiences with us.
     </Typography>
     <Button variant='contained' sx={{marginTop:3}}
-    onClick={() => navigate("/newpostt")}>Write New Post</Button>
+    onClick={() => navigate("/newpost")}>Write New Post</Button>
 
     </Container>
   )

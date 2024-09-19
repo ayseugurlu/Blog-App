@@ -36,7 +36,7 @@ const WeatherCard = () => {
   }, []);
 
   return (
-    <Container sx={{backgroundColor:"secondary.main",padding:3,borderRadius:3}}>
+    <Container sx={{backgroundColor:"secondary.main",padding:3,borderRadius:3,minWidth:"150px",textAlign:"center"}}>
       {dataWeather ? (
         <>
           <Typography variant="h4">{dataWeather.name}</Typography>
