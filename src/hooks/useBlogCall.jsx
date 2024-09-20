@@ -84,7 +84,7 @@ const axiosWithToken=useAxios()
         dispatch(fetchFail())
         
       }finally{
-       getLike(id)
+       getSingleData("blogs",id)
       }
     }
     const getLike = async (id) => {
@@ -93,21 +93,18 @@ const axiosWithToken=useAxios()
       try {
         const {data} =  await axiosWithToken.get(`blogs/${id}/getLike`)
 
-
-        // dispatch(getLikeSuccess({ didUserLike: data.didUserLike }))
-
       } catch (error) {
         dispatch(fetchFail())
         
       }
     }
 
-    const getSingleData = async (id) =>{
+    const getSingleData = async (endpoint,id) =>{
       dispatch(fetchStart())
 
       try {
         
-        const {data} = await axiosWithToken.get(`blogs/${id}`)
+        const {data} = await axiosWithToken.get(`${endpoint}/${id}`)
 
         dispatch(getSingleSuccess(data))
 

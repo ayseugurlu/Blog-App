@@ -29,6 +29,8 @@ const MyBlogs = () => {
   useEffect(()=>{
     getMyBlogData(`blogs/?author=${currentUser._id}`)
   },[])
+
+
   return (
     <Container
       maxWidth="lg"
@@ -54,7 +56,11 @@ const MyBlogs = () => {
               <CardActions sx={{justifyContent:"center"}}>
                
                 <Fab size="small" variant="extended"  sx={btnStyle}><FavoriteBorderIcon/>{blog.likes.length}</Fab>
-                <Fab size="small" variant="extended" sx={btnStyle} onClick={handleOpen}><ForumIcon/>{blog.comments.length} <CommentModal handleClose={handleClose} open={open} myblogId={blog._id}/></Fab>
+
+                <Fab size="small" variant="extended" sx={btnStyle} onClick={handleOpen}><ForumIcon/>{blog.comments.length} </Fab>
+                {open && ( <CommentModal handleClose={handleClose} open={open} myblogId={blog._id}/>)}
+               
+
                 <Fab size="small" variant="extended" sx={btnStyle}><VisibilityIcon/>{blog.countOfVisitors}</Fab>
               </CardActions>
             </CardContent>

@@ -23,25 +23,26 @@ import CommentModal from "./Modals/CommentModal";
 import { useState } from "react";
 
 import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
+import { useNavigate } from "react-router-dom";
 
 const BlogList = () => {
-  const { getBlogData, addRemoveLike, getSingleData, getLike } = useBlogCall();
-  const { singleBlog, blogs, like } = useSelector((state) => state.blog);
+  const { getBlogData, addRemoveLike, getLike } = useBlogCall();
+  const {  blogs, like } = useSelector((state) => state.blog);
 
-
-  console.log(like);
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-
+const naviagte = useNavigate()
   const handleLike = (id) => {
     getLike(id);
   };
 
-  console.log(blogs);
+  // console.log(blogs);
+  
 
   useEffect(() => {
     getBlogData("blogs");
+   
   }, []);
 
   return (
@@ -56,9 +57,10 @@ const BlogList = () => {
           sx={{
             display: "flex",
             flexDirection: { xs: "column", sm: "row" },
-            marginBottom: 2,
+            marginBottom: 3,
             height: { xs: "380px", sm: "250px" },
             borderRadius: "1rem",
+            boxShadow:"2px 2px 10px black"
           }}
         >
           <CardMedia
@@ -76,6 +78,7 @@ const BlogList = () => {
               display: "inline-block",
               padding: 3,
               marginBottom: 3,
+              
             }}
           >
             <Typography variant="h6" component="h2">
@@ -91,25 +94,19 @@ const BlogList = () => {
             >
               {blog.content}
             </Typography>
-            <Button sx={{ color: "primary.main" }}>
-              <MoreHorizIcon />
+            <Button sx={{ color: "primary.main" }} endIcon={<MoreHorizIcon/>}
+            onClick={()=>naviagte(`/detail/${blog._id}`)}
+            >
+               Read More
             </Button>
 
             <CardActions sx={{ justifyContent: "center", mb: 10 }}>
               <Fab
                 size="small"
                 variant="extended"
-                onClick={(e) => {
-                  addRemoveLike(blog._id);
-                }}
                 sx={btnStyle}
-              >
-                {like.didUserLike ? (
-                  <FavoriteOutlinedIcon />
-                ) : (
-                  <FavoriteBorderIcon />
-                )}
-                {like.countOfLikes}
+              > <FavoriteBorderIcon/>
+                {blog.likes.length}
               </Fab>
 
               <Fab
@@ -119,13 +116,10 @@ const BlogList = () => {
                 onClick={handleOpen}
               >
                 <ForumIcon />
-                {blog.comments.length}{}
-                <CommentModal
-                  handleClose={handleClose}
-                  open={open}
-                  myblogId={blog._id}
-                />
+                {blog.comments.length}
               </Fab>
+             
+              
 
               <Fab size="small" variant="extended" sx={btnStyle}>
                 <VisibilityIcon />

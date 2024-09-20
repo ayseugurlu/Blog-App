@@ -38,7 +38,7 @@ const blogSlice = createSlice({
         },
         getSingleSuccess : (state,{payload}) => {
             state.loading= false
-            state.singleBlog = payload.data.data
+            state.singleBlog = payload.data
         },
         getLikeSuccess:(state,{payload}) => {
             state.loading = false
