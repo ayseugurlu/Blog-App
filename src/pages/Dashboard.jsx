@@ -137,7 +137,7 @@ function Dashboard(props) {
               >
                 {settings.map((setting) => (
                   <MenuItem
-                    key={setting}
+                    key={setting.name}
                     onClick={() => {
                       handleCloseUserMenu();
                       navigate(setting.path);

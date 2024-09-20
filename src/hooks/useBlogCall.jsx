@@ -1,13 +1,15 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { fetchFail, fetchStart, getBlogSuccess } from '../features/blogSlice'
-import { axiosPublic } from './useAxios'
+import { fetchFail, fetchStart, getBlogSuccess, getMyBlogSuccess, postBlogSuccess } from '../features/blogSlice'
+import useAxios, { axiosPublic } from './useAxios'
 import { toastErrorNotify, toastSuccessNotify } from '../helper/ToastNotify'
 
 
 const useBlogCall = () => {
 
 const dispatch = useDispatch()
+
+const axiosWithToken=useAxios()
 
 
 
@@ -24,25 +26,43 @@ const dispatch = useDispatch()
 
         
     }
+    const getMyBlogData = async(endpoint) => {
+        dispatch(fetchStart())
+
+        try {
+            const {data} = await axiosWithToken.get(endpoint)
+            // console.log(data);
+            dispatch(getMyBlogSuccess({data, endpoint}))
+        } catch (error) {
+            console.log(error);
+        }
+
+        
+    }
 
     const postBlogData = async(endpoint,info) => {
         dispatch(fetchStart())
 
         try {
-            const {data} = await axiosPublic.post(endpoint,info)
+            const {data} = await axiosWithToken.post(endpoint,info)
             console.log(data);
           toastSuccessNotify(`${endpoint} is successfully recorded.`)
+         
+
         } catch (error) {
             console.log(error);
             toastErrorNotify(error)
             dispatch(fetchFail())
+        }finally{
+          getBlogData(endpoint)
         }
 
         
     }
   return {
     getBlogData,
-    postBlogData
+    postBlogData,
+    getMyBlogData
   }
 }
 

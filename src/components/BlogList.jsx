@@ -3,7 +3,6 @@ import useBlogCall from "../hooks/useBlogCall";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import {
-  Box,
   Button,
   Card,
   CardActions,
@@ -41,7 +40,7 @@ const BlogList = () => {
      
         {blogs.map((blog) => (
           
-          <Card component="div" sx={{display:"flex", flexDirection:{xs:"column",sm:"row"}, marginBottom:2,height:{xs:"350px",sm:"200px"},borderRadius:"1rem"}}>
+          <Card key={blog._id} component="div" sx={{display:"flex", flexDirection:{xs:"column",sm:"row"}, marginBottom:2,height:{xs:"350px",sm:"200px"},borderRadius:"1rem"}}>
 
             <CardMedia image={blog.image} sx={{height:{xs:"150px",sm:"100%"}, width:{sm:"250px"},padding:{xs:9,sm:5}}}/>
 

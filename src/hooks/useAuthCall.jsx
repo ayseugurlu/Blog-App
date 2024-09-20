@@ -36,6 +36,7 @@ const axiosWithToken = useAxios()
         try {
             const {data} = await axiosPublic.post("auth/login/",userInfo)
 
+            console.log("login:",data);
             dispatch(loginSuccess(data))
             toastSuccessNotify("Login is successfully")
             navigate("/")

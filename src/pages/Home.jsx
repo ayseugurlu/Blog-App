@@ -8,7 +8,7 @@ import HalloCard from '../components/HalloCard'
 const Home = () => {
   return (
    <Container  maxWidth="xl">
-   <Typography  >Hallo</Typography>
+  
 
     <Grid2 container spacing={3} width="100%">
         <Grid2 size={{xs:12,md:10}} >
