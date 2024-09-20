@@ -101,16 +101,15 @@ const BlogList = () => {
                 variant="extended"
                 onClick={(e) => {
                   addRemoveLike(blog._id);
-                  handleLike(blog._id);
                 }}
                 sx={btnStyle}
               >
-                {like ? (
+                {like.didUserLike ? (
                   <FavoriteOutlinedIcon />
                 ) : (
                   <FavoriteBorderIcon />
                 )}
-                {blog.likes.length}
+                {like.countOfLikes}
               </Fab>
 
               <Fab
@@ -120,7 +119,7 @@ const BlogList = () => {
                 onClick={handleOpen}
               >
                 <ForumIcon />
-                {blog.comments.length}{" "}
+                {blog.comments.length}{}
                 <CommentModal
                   handleClose={handleClose}
                   open={open}

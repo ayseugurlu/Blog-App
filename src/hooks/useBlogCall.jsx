@@ -58,7 +58,7 @@ const axiosWithToken=useAxios()
 
         try {
             const {data} = await axiosWithToken.post(endpoint,info)
-            console.log(data);
+            // console.log(data);
           toastSuccessNotify(`${endpoint} is successfully recorded.`)
          
 
@@ -77,14 +77,14 @@ const axiosWithToken=useAxios()
       dispatch(fetchStart())
 
       try {
-         await axiosWithToken.post(`blogs/${id}/postLike`)
-        
+        const {data} = await axiosWithToken.post(`blogs/${id}/postLike`)
+        dispatch(getLikeSuccess(data))
 
       } catch (error) {
         dispatch(fetchFail())
         
       }finally{
-        getBlogData("blogs")
+       getLike(id)
       }
     }
     const getLike = async (id) => {
@@ -94,7 +94,7 @@ const axiosWithToken=useAxios()
         const {data} =  await axiosWithToken.get(`blogs/${id}/getLike`)
 
 
-        dispatch(getLikeSuccess({ didUserLike: data.didUserLike }))
+        // dispatch(getLikeSuccess({ didUserLike: data.didUserLike }))
 
       } catch (error) {
         dispatch(fetchFail())

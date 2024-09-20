@@ -41,7 +41,7 @@ export default function CommentModal({ open, handleClose, myblogId }) {
 
   const filteredComment = comments.filter((comment) => comment._id == myblogId) 
 
-  console.log(filteredComment);
+//   console.log(filteredComment);
 
   return (
     <div>

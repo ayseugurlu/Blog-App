@@ -42,7 +42,7 @@ const blogSlice = createSlice({
         },
         getLikeSuccess:(state,{payload}) => {
             state.loading = false
-            state.like = payload.didUserLike
+            state.like = payload
         }
        
     }
