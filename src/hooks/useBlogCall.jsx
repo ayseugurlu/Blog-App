@@ -39,6 +39,19 @@ const axiosWithToken=useAxios()
 
         
     }
+    const getDataWithToken = async(endpoint) => {
+        dispatch(fetchStart())
+
+        try {
+            const {data} = await axiosWithToken.get(endpoint)
+            // console.log(data);
+            dispatch(getBlogSuccess({data, endpoint}))
+        } catch (error) {
+            console.log(error);
+        }
+
+        
+    }
 
     const postBlogData = async(endpoint,info) => {
         dispatch(fetchStart())
@@ -59,10 +72,13 @@ const axiosWithToken=useAxios()
 
         
     }
+
+    
   return {
     getBlogData,
     postBlogData,
-    getMyBlogData
+    getMyBlogData,
+    getDataWithToken
   }
 }
 

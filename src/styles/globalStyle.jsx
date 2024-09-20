@@ -1,5 +1,5 @@
 export const btnStyle = {
-    color:"secondary.contrastText"
+    color:"#F55D51"
 }
 
 export const cardStyle = {

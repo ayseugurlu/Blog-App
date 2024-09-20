@@ -1,4 +1,4 @@
-import { Button, Card, CardActions, CardContent, CardMedia, Container, Pagination, Stack, Typography } from '@mui/material'
+import { Button, Card, CardActions, CardContent, CardMedia, Container, Fab, Pagination, Stack, Typography } from '@mui/material'
 import React from 'react'
 import useBlogCall from '../hooks/useBlogCall'
 import { useEffect } from 'react'
@@ -8,8 +8,14 @@ import ForumIcon from '@mui/icons-material/Forum';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import { btnStyle } from "../styles/globalStyle";
+import CommentModal from '../components/Modals/CommentModal'
 
 const MyBlogs = () => {
+
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   const {myBlogs} = useSelector(state => state.blog)
 
   const {currentUser} = useSelector(state=> state.auth)
@@ -46,10 +52,10 @@ const MyBlogs = () => {
               
 
               <CardActions sx={{justifyContent:"center"}}>
-                <Button sx={btnStyle}
-                onClick={}><FavoriteBorderIcon/>{blog.likes.length}</Button>
-                <Button sx={btnStyle}><ForumIcon/></Button>
-                <Button sx={btnStyle}><VisibilityIcon/>{blog.countOfVisitors}</Button>
+               
+                <Fab size="small" variant="extended"  sx={btnStyle}><FavoriteBorderIcon/>{blog.likes.length}</Fab>
+                <Fab size="small" variant="extended" sx={btnStyle} onClick={handleOpen}><ForumIcon/>{blog.comments.length} <CommentModal handleClose={handleClose} open={open} myblogId={blog._id}/></Fab>
+                <Fab size="small" variant="extended" sx={btnStyle}><VisibilityIcon/>{blog.countOfVisitors}</Fab>
               </CardActions>
             </CardContent>
           </Card>

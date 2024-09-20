@@ -9,6 +9,7 @@ import {
   CardContent,
   CardMedia,
   Container,
+  Fab,
   Pagination,
   Stack,
   Typography,
@@ -18,6 +19,7 @@ import ForumIcon from '@mui/icons-material/Forum';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import { btnStyle } from "../styles/globalStyle";
+import CommentModal from "./Modals/CommentModal";
 
 
 
@@ -25,6 +27,10 @@ import { btnStyle } from "../styles/globalStyle";
 const BlogList = () => {
   const { getBlogData } = useBlogCall();
   const { blogs } = useSelector((state) => state.blog);
+
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   console.log(blogs);
 
@@ -40,7 +46,7 @@ const BlogList = () => {
      
         {blogs.map((blog) => (
           
-          <Card key={blog._id} component="div" sx={{display:"flex", flexDirection:{xs:"column",sm:"row"}, marginBottom:2,height:{xs:"350px",sm:"200px"},borderRadius:"1rem"}}>
+          <Card key={blog._id} component="div" sx={{display:"flex", flexDirection:{xs:"column",sm:"row"}, marginBottom:2,height:{xs:"380px",sm:"250px"},borderRadius:"1rem"}}>
 
             <CardMedia image={blog.image} sx={{height:{xs:"150px",sm:"100%"}, width:{sm:"250px"},padding:{xs:9,sm:5}}}/>
 
@@ -54,10 +60,10 @@ const BlogList = () => {
                 </Button>
               
 
-              <CardActions sx={{justifyContent:"center"}}>
-                <Button sx={btnStyle}><FavoriteBorderIcon/></Button>
-                <Button sx={btnStyle}><ForumIcon/></Button>
-                <Button sx={btnStyle}><VisibilityIcon/>{blog.countOfVisitors}</Button>
+              <CardActions sx={{justifyContent:"center",mb:10}}>
+                <Fab size="small" variant="extended"  sx={btnStyle}><FavoriteBorderIcon/>{blog.likes.length}</Fab>
+                <Fab size="small" variant="extended" sx={btnStyle} onClick={handleOpen}><ForumIcon/>{blog.comments.length} <CommentModal handleClose={handleClose} open={open} myblogId={blog._id}/></Fab>
+                <Fab size="small" variant="extended" sx={btnStyle}><VisibilityIcon/>{blog.countOfVisitors}</Fab>
               </CardActions>
             </CardContent>
           </Card>

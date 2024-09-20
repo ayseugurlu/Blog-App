@@ -2,7 +2,6 @@ import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
-import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -110,7 +109,8 @@ function Dashboard(props) {
           </Typography>
 
           {currentUser ? (
-            <Box sx={{ marginLeft: "auto" }}>
+            <Box sx={{ marginLeft: "auto",display:"flex", justifyContent:"center", alignItems:"center", gap:2}}>
+            <Typography variant="body1" sx={{color:"white"}}> {currentUser.username}</Typography>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                   <Avatar
