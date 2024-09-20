@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { fetchFail, fetchStart, getBlogSuccess, getMyBlogSuccess, postBlogSuccess } from '../features/blogSlice'
+import { fetchFail, fetchStart, getBlogSuccess, getLikeSuccess, getMyBlogSuccess, getSingleSuccess, postBlogSuccess } from '../features/blogSlice'
 import useAxios, { axiosPublic } from './useAxios'
 import { toastErrorNotify, toastSuccessNotify } from '../helper/ToastNotify'
 
@@ -73,12 +73,58 @@ const axiosWithToken=useAxios()
         
     }
 
+    const addRemoveLike = async (id) => {
+      dispatch(fetchStart())
+
+      try {
+         await axiosWithToken.post(`blogs/${id}/postLike`)
+        
+
+      } catch (error) {
+        dispatch(fetchFail())
+        
+      }finally{
+        getBlogData("blogs")
+      }
+    }
+    const getLike = async (id) => {
+      dispatch(fetchStart())
+
+      try {
+        const {data} =  await axiosWithToken.get(`blogs/${id}/getLike`)
+
+
+        dispatch(getLikeSuccess({ didUserLike: data.didUserLike }))
+
+      } catch (error) {
+        dispatch(fetchFail())
+        
+      }
+    }
+
+    const getSingleData = async (id) =>{
+      dispatch(fetchStart())
+
+      try {
+        
+        const {data} = await axiosWithToken.get(`blogs/${id}`)
+
+        dispatch(getSingleSuccess(data))
+
+      } catch (error) {
+        dispatch(fetchFail())
+      }
+    }
+
     
   return {
     getBlogData,
     postBlogData,
     getMyBlogData,
-    getDataWithToken
+    getDataWithToken,
+    addRemoveLike,
+    getSingleData,
+    getLike
   }
 }
 
