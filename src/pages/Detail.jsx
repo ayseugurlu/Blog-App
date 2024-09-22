@@ -1,4 +1,4 @@
-import { Card, CardActions, CardMedia, Container, Fab, Typography } from "@mui/material";
+import { Button, Card, CardActions, CardMedia, Container, Fab, IconButton, Typography } from "@mui/material";
 import React from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -10,6 +10,9 @@ import ForumIcon from "@mui/icons-material/Forum";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import CommentModal from "../components/Modals/CommentModal";
 import { FavoriteBorderOutlined } from "@mui/icons-material";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
+import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 
 
 const Detail = () => {
@@ -34,18 +37,20 @@ const Detail = () => {
     <Container maxWidth="md">
       <Card sx={{ padding: 5 }}>
         <Typography variant="h4" align="center" mb={3}>
-          {singleBlog.title}
+          {singleBlog?.title}
         </Typography>
 
-        <CardMedia component="img" src={singleBlog.image} />
-
-        <Typography variant="body1" color="primary.contrastText" mt={3}>
-          Category : {singleBlog?.categoryId?.name}
+        <CardMedia component="img" src={singleBlog?.image} />
+        
+        <Button size="medium" color="warning" sx={{marginTop:3}}><AccountCircleIcon/>{singleBlog?.userId?.username}</Button> 
+        
+        <Typography variant="body1" color="green" >
+        <Typography component="span" color="primary.contrastText">Category :</Typography> {singleBlog?.categoryId?.name}
         </Typography>
-        <Typography variant="body1">{singleBlog.content}</Typography>
+
         <Typography variant="body1" color="green">
           
-          Date:
+          <Typography component="span" color="primary.contrastText">Created :</Typography>
           {new Date(singleBlog?.categoryId?.createdAt).toLocaleDateString(
             "de-DE",
             {
@@ -55,6 +60,8 @@ const Detail = () => {
             }
           )}
         </Typography>
+        <Typography variant="body1" my={3}>{singleBlog?.content}</Typography>
+        
 
         <CardActions sx={{ justifyContent: "center", mb: 10 }}>
               <Fab
@@ -65,7 +72,7 @@ const Detail = () => {
                 }}
                 sx={btnStyle}
               >
-                {singleBlog?.likes?.includes(currentUser._id) ? (<FavoriteBorderOutlined/>) : (<FavoriteBorderIcon/>)}
+                {singleBlog?.likes?.includes(currentUser._id) ? (<FavoriteOutlinedIcon/>) : (<FavoriteBorderOutlinedIcon/>)}
                   
             
                 {singleBlog?.likes?.length}
@@ -80,19 +87,26 @@ const Detail = () => {
                 <ForumIcon />
                 {singleBlog?.comments?.length}
               </Fab>
-              {open && (<CommentModal
-                  handleClose={handleClose}
-                  open={open}
-                  {...singleBlog}
-                />)}
+              
               
 
               <Fab size="small" variant="extended" sx={btnStyle}>
                 <VisibilityIcon />
-                {singleBlog.countOfVisitors}
+                {singleBlog?.countOfVisitors}
               </Fab>
+
+
+              
             </CardActions>
+
+            {open && (<CommentModal
+                  handleClose={handleClose}
+                  open={open}
+                  {...singleBlog}
+                />)}
       </Card>
+
+
     </Container>
   );
 };

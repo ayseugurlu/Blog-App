@@ -60,7 +60,7 @@ function Dashboard(props) {
   const navigate = useNavigate();
 
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box sx={{ display: "flex",backgroundColor:"#faf0e6" }}>
       <CssBaseline />
       <AppBar
         position="fixed"

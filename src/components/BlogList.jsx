@@ -3,6 +3,7 @@ import useBlogCall from "../hooks/useBlogCall";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import {
+  Box,
   Button,
   Card,
   CardActions,
@@ -17,17 +18,16 @@ import {
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ForumIcon from "@mui/icons-material/Forum";
 import VisibilityIcon from "@mui/icons-material/Visibility";
-import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { btnStyle } from "../styles/globalStyle";
-import CommentModal from "./Modals/CommentModal";
-import { useState } from "react";
+import ReadMoreRoundedIcon from '@mui/icons-material/ReadMoreRounded';
+import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
 
-import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
 import { useNavigate } from "react-router-dom";
 
 const BlogList = () => {
   const { getBlogData, addRemoveLike, getLike } = useBlogCall();
   const {  blogs, like } = useSelector((state) => state.blog);
+  const {currentUser} = useSelector(state => state.auth)
 
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -48,7 +48,7 @@ const naviagte = useNavigate()
   return (
     <Container
       maxWidth="lg"
-      sx={{ backgroundColor: "primary.second", padding: 5, borderRadius: 3 }}
+      sx={{ backgroundColor: "secondary.contrastText", padding: 5, borderRadius: 3 }}
     >
       {blogs.map((blog) => (
         <Card
@@ -58,17 +58,19 @@ const naviagte = useNavigate()
             display: "flex",
             flexDirection: { xs: "column", sm: "row" },
             marginBottom: 3,
-            height: { xs: "380px", sm: "250px" },
+            height: {   },
             borderRadius: "1rem",
-            boxShadow:"2px 2px 10px black"
+            boxShadow:"2px 2px 10px black",
+            backgroundColor:"#f7f2e9"
           }}
         >
           <CardMedia
             image={blog.image}
             sx={{
-              height: { xs: "150px", sm: "100%" },
-              width: { sm: "250px" },
+              
+              width: "100%",
               padding: { xs: 9, sm: 5 },
+              
             }}
           />
 
@@ -94,18 +96,15 @@ const naviagte = useNavigate()
             >
               {blog.content}
             </Typography>
-            <Button sx={{ color: "primary.main" }} endIcon={<MoreHorizIcon/>}
-            onClick={()=>naviagte(`/detail/${blog._id}`)}
-            >
-               Read More
-            </Button>
+          
 
-            <CardActions sx={{ justifyContent: "center", mb: 10 }}>
-              <Fab
+            <CardActions sx={{flexDirection:{xs:"column"}, justifyContent:{xs:"center", sm:"space-around"}, mb:3 }}>
+            <Box sx={{ display:"flex",justifyContent: "center", mb:4,mt:3,gap:2 }}>
+            <Fab
                 size="small"
                 variant="extended"
                 sx={btnStyle}
-              > <FavoriteBorderIcon/>
+              >  {blog.likes.includes(currentUser._id) ? (<FavoriteOutlinedIcon/>) : (<FavoriteBorderIcon />)}
                 {blog.likes.length}
               </Fab>
 
@@ -125,8 +124,20 @@ const naviagte = useNavigate()
                 <VisibilityIcon />
                 {blog.countOfVisitors}
               </Fab>
+            </Box>
+              
+
+              <Button variant="contained" component="div" size="medium" color="primary" endIcon={<ReadMoreRoundedIcon/>}
+            onClick={()=>naviagte(`/detail/${blog._id}`)}
+            >
+               Read More
+            </Button>
             </CardActions>
+
+          
           </CardContent>
+
+          
         </Card>
       ))}
       <Stack spacing={2} sx={{ margin: "auto" }}>

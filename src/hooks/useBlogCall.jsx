@@ -60,6 +60,7 @@ const axiosWithToken=useAxios()
             const {data} = await axiosWithToken.post(endpoint,info)
             // console.log(data);
           toastSuccessNotify(`${endpoint} is successfully recorded.`)
+          dispatch(postBlogSuccess(endpoint,data))
          
 
         } catch (error) {

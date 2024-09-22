@@ -2,7 +2,7 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import { Button, List, ListItem, TextField } from "@mui/material";
+import { Button, Container, List, ListItem, TextField } from "@mui/material";
 import { useEffect } from "react";
 import useBlogCall from "../../hooks/useBlogCall";
 import AccountCircleTwoToneIcon from "@mui/icons-material/AccountCircleTwoTone";
@@ -17,12 +17,17 @@ const style = {
   left: "50%",
   transform: "translate(-50%, -50%)",
   width: "400px",
+  height: "500px",
   bgcolor: "primary.main",
   boxShadow: 24,
-  overFlow: "scroll",
+  overflow: "auto",
   p: 4,
   borderRadius: 5,
   color: "secondary.contrastText",
+  "&::-webkit-scrollbar": {
+    width: "2px",
+    
+}
 };
 
 export default function CommentModal({
@@ -31,22 +36,22 @@ export default function CommentModal({
   comments,
   userId,
   createdAt,
-  blogId
+  blogId,
+  _id
 }) {
  
-  const { postBlogData, getSingleData } = useBlogCall();
+  const { postBlogData} = useBlogCall();
 
-  useEffect(() => {
-    getSingleData("comments", blogId);
-  }, []);
+ console.log(userId);
 
   return (
-    <div>
+    <Container>
       <Modal
         open={open}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
+        
       >
         <Box sx={style}>
           <Button
@@ -78,7 +83,7 @@ export default function CommentModal({
                   color="primary.contrastText"
                 >
                   <AccountCircleTwoToneIcon sx={{mr:1}}/>
-                  {userId.username} 
+                  {comment.userId.username} 
                  
                 </Typography>
                 <Typography
@@ -102,26 +107,22 @@ export default function CommentModal({
           </List>
 
           <Box>
-            <Typography
-              id="modal-modal-title"
-              variant="h6"
-              component="h2"
-              mb={2}
-            >
-              New Category
-            </Typography>
+           
             <Formik
               initialValues={{
-                blogId: blogId,
+                blogId: blogId || _id,
                 comment: "",
               }}
               onSubmit={(values, actions) => {
                 console.log(values);
                 postBlogData("comments", values);
+                getSingleData("blogs", _id);
                 actions.resetForm();
                 actions.setSubmitting(false);
                 handleClose();
               }}
+
+              
             >
               {({
                 values,
@@ -132,7 +133,7 @@ export default function CommentModal({
                 handleSubmit,
                 isSubmitting,
               }) => (
-                <Form onSubmit={handleSubmit}>
+                <Form>
                   <Box
                     sx={{
                       transform: "translateZ(0px)",
@@ -174,6 +175,6 @@ export default function CommentModal({
           </Box>
         </Box>
       </Modal>
-    </div>
+    </Container>
   );
 }
