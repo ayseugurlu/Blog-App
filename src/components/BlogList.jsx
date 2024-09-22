@@ -104,7 +104,7 @@ const naviagte = useNavigate()
                 size="small"
                 variant="extended"
                 sx={btnStyle}
-              >  {blog.likes.includes(currentUser._id) ? (<FavoriteOutlinedIcon/>) : (<FavoriteBorderIcon />)}
+              >  {blog?.likes?.includes(currentUser._id) ? (<FavoriteOutlinedIcon/>) : (<FavoriteBorderIcon />)}
                 {blog.likes.length}
               </Fab>
 

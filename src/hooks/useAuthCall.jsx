@@ -61,7 +61,21 @@ const axiosWithToken = useAxios()
             
         }
     }
-  return {register,login,logout}
+
+    const updateProfile = async (id,info,bearer) => {
+        dispatch(fetchStart())
+        try {
+            const {data} = await axiosWithToken.put(`users/${id}`,info)
+            toastSuccessNotify(`${endpoint} is successfully updated!`)
+        } catch (error) {
+            dispatch(fetchFail())
+            toastErrorNotify(`${endpoint} can not be updated`)
+            
+        }finally{
+            await axiosWithToken.post("/auth/refresh",bearer)
+        }
+    }
+  return {register,login,logout,updateProfile}
 }
 
 export default useAuthCall

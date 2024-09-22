@@ -8,6 +8,7 @@ const authSlice = createSlice({
         loading: false,
         error:false,
         token: null,
+        bearer:null,
     },
     reducers:{
         fetchStart:state =>{
@@ -23,8 +24,15 @@ const authSlice = createSlice({
             state.loading = false;
             state.currentUser = payload?.user
             state.token = payload?.token
+            state.bearer = payload?.bearer
         },
         logoutSuccess: (state) => {
+            state.loading = false;
+            state.currentUser = null
+            state.token = null
+
+        },
+        updateProfileSuccess: (state) => {
             state.loading = false;
             state.currentUser = null
             state.token = null

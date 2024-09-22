@@ -2,7 +2,6 @@ import { Container, Grid, Grid2, Typography } from '@mui/material'
 import React from 'react'
 import BlogList from '../components/BlogList'
 import WeatherCard from '../components/WeatherCard'
-import NewsCard from '../components/NewsCard'
 import HalloCard from '../components/HalloCard'
 import Calendar from '../components/Calendar'
 
