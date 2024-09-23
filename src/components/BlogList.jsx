@@ -56,9 +56,8 @@ const naviagte = useNavigate()
           component="div"
           sx={{
             display: "flex",
-            flexDirection: { xs: "column", sm: "row" },
+            flexDirection: { xs: "column", md: "row" },
             marginBottom: 3,
-            height: {   },
             borderRadius: "1rem",
             boxShadow:"2px 2px 10px black",
             backgroundColor:"#f7f2e9"
@@ -69,7 +68,7 @@ const naviagte = useNavigate()
             sx={{
               
               width: "100%",
-              padding: { xs: 9, sm: 5 },
+              padding: { xs: 9, md: 5 },
               
             }}
           />
@@ -98,7 +97,7 @@ const naviagte = useNavigate()
             </Typography>
           
 
-            <CardActions sx={{flexDirection:{xs:"column"}, justifyContent:{xs:"center", sm:"space-around"}, mb:3 }}>
+            <CardActions sx={{flexDirection:{xs:"column"}, justifyContent:{xs:"center", md:"space-around"}, mb:3 }}>
             <Box sx={{ display:"flex",justifyContent: "center", mb:4,mt:3,gap:2 }}>
             <Fab
                 size="small"

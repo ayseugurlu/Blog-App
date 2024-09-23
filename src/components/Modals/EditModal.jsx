@@ -10,6 +10,7 @@ import { useSelector } from "react-redux";
 import useAuthCall from "../../hooks/useAuthCall";
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import { newPostStyle } from "../../styles/globalStyle";
 
 const style = {
   position: "absolute",
@@ -55,7 +56,7 @@ export default function EditModal({ open, handleClose }) {
           >
             <HighlightOffOutlinedIcon />
           </Button>
-          <Typography id="modal-modal-title" variant="h5" component="h2">
+          <Typography id="modal-modal-title" variant="h5" component="h2" mb={3}>
             My Profile
           </Typography>
 
@@ -97,6 +98,7 @@ export default function EditModal({ open, handleClose }) {
                   onBlur={handleBlur}
                   helperText={touched.username && errors.username}
                   error={touched.username && Boolean(errors.username)}
+                  sx={newPostStyle}
                 />
                 <TextField
                   label="First Name"
@@ -108,6 +110,7 @@ export default function EditModal({ open, handleClose }) {
                   onBlur={handleBlur}
                   helperText={touched.firstName && errors.firstName}
                   error={touched.firstName && Boolean(errors.firstName)}
+                  sx={newPostStyle}
                 />
                 <TextField
                   label="Last Name"
@@ -119,6 +122,7 @@ export default function EditModal({ open, handleClose }) {
                   onBlur={handleBlur}
                   helperText={touched.lastName && errors.lastName}
                   error={touched.lastName && Boolean(errors.lastName)}
+                  sx={newPostStyle}
                 />
                 <TextField
                   label="Email"
@@ -130,6 +134,7 @@ export default function EditModal({ open, handleClose }) {
                   onBlur={handleBlur}
                   helperText={touched.email && errors.email}
                   error={touched.email && Boolean(errors.email)}
+                  sx={newPostStyle}
                 />
                 <TextField
                   label="Image"
@@ -141,6 +146,7 @@ export default function EditModal({ open, handleClose }) {
                   onBlur={handleBlur}
                   helperText={touched.image && errors.image}
                   error={touched.image && Boolean(errors.image)}
+                  sx={newPostStyle}
                 />
                 <TextField
                   label="Bio"
@@ -152,6 +158,7 @@ export default function EditModal({ open, handleClose }) {
                   onBlur={handleBlur}
                   helperText={touched.bio && errors.bio}
                   error={touched.bio && Boolean(errors.bio)}
+                  sx={newPostStyle}
                 />
                 <TextField
                   label="Password"
@@ -179,6 +186,7 @@ export default function EditModal({ open, handleClose }) {
                   onBlur={handleBlur}
                   helperText={touched.password && errors.password}
                   error={touched.password && Boolean(errors.password)}
+                  sx={newPostStyle}
                 />
 
                 <Button
