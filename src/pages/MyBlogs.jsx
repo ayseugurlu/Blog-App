@@ -20,7 +20,6 @@ import ForumIcon from "@mui/icons-material/Forum";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import { btnStyle } from "../styles/globalStyle";
 import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
-
 import ReadMoreRoundedIcon from "@mui/icons-material/ReadMoreRounded";
 import { useNavigate } from "react-router-dom";
 
@@ -45,7 +44,7 @@ const MyBlogs = () => {
       maxWidth="lg"
       sx={{ backgroundColor: "primary.contrastText", padding: 5, borderRadius: 3 }}
     >
-      {myBlogs.map((blog) => (
+      {myBlogs?.map((blog) => (
         <Card
           key={blog._id}
           component="div"

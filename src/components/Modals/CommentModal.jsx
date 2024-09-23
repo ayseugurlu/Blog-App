@@ -42,7 +42,7 @@ export default function CommentModal({
  
   const { postBlogData} = useBlogCall();
 
- console.log(userId);
+ console.log(comments);
 
   return (
     <Container>
@@ -67,7 +67,7 @@ export default function CommentModal({
           </Typography>
           <List>
             {comments?.map((comment) => (
-              <ListItem
+              <ListItem key={comment?._id}
                 sx={{
                   display: "flex",
                   flexDirection: "column",
@@ -83,7 +83,7 @@ export default function CommentModal({
                   color="primary.contrastText"
                 >
                   <AccountCircleTwoToneIcon sx={{mr:1}}/>
-                  {comment.userId.username} 
+                  {comment?.userId?.username} 
                  
                 </Typography>
                 <Typography

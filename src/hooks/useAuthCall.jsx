@@ -2,8 +2,8 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import { fetchFail, fetchStart } from '../features/blogSlice'
 import useAxios, { axiosPublic } from './useAxios'
-import { loginSuccess, logoutSuccess, registerSuccess } from '../features/authSlice'
-import { toastErrorNotify, toastSuccessNotify } from '../helper/ToastNotify'
+import { loginSuccess, logoutSuccess, registerSuccess, updateProfileSuccess } from '../features/authSlice'
+import { toastErrorNotify, toastSuccessNotify, toastWarnNotify } from '../helper/ToastNotify'
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
@@ -62,20 +62,36 @@ const axiosWithToken = useAxios()
         }
     }
 
-    const updateProfile = async (id,info,bearer) => {
+    const updateProfile = async (id,info) => {
         dispatch(fetchStart())
         try {
             const {data} = await axiosWithToken.put(`users/${id}`,info)
-            toastSuccessNotify(`${endpoint} is successfully updated!`)
+            dispatch(updateProfileSuccess(data))
+            toastSuccessNotify(`Profile is successfully updated!`)
+            
+            console.log('Updated profile:', data);
         } catch (error) {
             dispatch(fetchFail())
-            toastErrorNotify(`${endpoint} can not be updated`)
+            toastErrorNotify("Profile can not be updated")
             
-        }finally{
-            await axiosWithToken.post("/auth/refresh",bearer)
         }
     }
-  return {register,login,logout,updateProfile}
+
+    const deleteUserData = async (id) => {
+        dispatch(fetchFail)
+
+        try {
+            await axiosWithToken.delete(`users/${id}`)
+            confirm("Are you sure you want to delete your account?")
+            navigate("/register")
+
+        } catch (error) {
+
+            dispatch(fetchFail())
+            
+        }
+    }
+  return {register,login,logout,updateProfile,deleteUserData}
 }
 
 export default useAuthCall

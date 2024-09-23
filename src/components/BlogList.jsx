@@ -64,7 +64,7 @@ const naviagte = useNavigate()
           }}
         >
           <CardMedia
-            image={blog.image}
+            image={blog?.image}
             sx={{
               
               width: "100%",
@@ -83,7 +83,7 @@ const naviagte = useNavigate()
             }}
           >
             <Typography variant="h6" component="h2">
-              {blog.title}{" "}
+              {blog?.title}{" "}
             </Typography>
             <Typography
               variant="body2"
@@ -93,7 +93,7 @@ const naviagte = useNavigate()
                 textOverflow: "ellipsis",
               }}
             >
-              {blog.content}
+              {blog?.content}
             </Typography>
           
 
@@ -103,8 +103,8 @@ const naviagte = useNavigate()
                 size="small"
                 variant="extended"
                 sx={btnStyle}
-              >  {blog?.likes?.includes(currentUser._id) ? (<FavoriteOutlinedIcon/>) : (<FavoriteBorderIcon />)}
-                {blog.likes.length}
+              >  {blog?.likes?.includes(currentUser?._id) ? (<FavoriteOutlinedIcon/>) : (<FavoriteBorderIcon />)}
+                {blog?.likes?.length}
               </Fab>
 
               <Fab
@@ -114,20 +114,20 @@ const naviagte = useNavigate()
                 onClick={handleOpen}
               >
                 <ForumIcon />
-                {blog.comments.length}
+                {blog?.comments?.length}
               </Fab>
              
               
 
               <Fab size="small" variant="extended" sx={btnStyle}>
                 <VisibilityIcon />
-                {blog.countOfVisitors}
+                {blog?.countOfVisitors}
               </Fab>
             </Box>
               
 
               <Button variant="contained" component="div" size="medium" color="primary" endIcon={<ReadMoreRoundedIcon/>}
-            onClick={()=>naviagte(`/detail/${blog._id}`)}
+            onClick={()=>naviagte(`/detail/${blog?._id}`)}
             >
                Read More
             </Button>

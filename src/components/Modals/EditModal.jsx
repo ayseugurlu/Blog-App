@@ -32,7 +32,7 @@ const style = {
 
 export default function EditModal({ open, handleClose }) {
 
-    const {bearer,currentUser} =useSelector(state=> state.auth)
+    const {currentUser} =useSelector(state=> state.auth)
 
     const {updateProfile} = useAuthCall()
 
@@ -62,18 +62,18 @@ export default function EditModal({ open, handleClose }) {
 
           <Formik
             initialValues={{
-              username: "",
-              firstName: "",
-              lastName: "",
-              email: "",
+              username: currentUser?.usename || "",
+              firstName: currentUser?.firstName || "",
+              lastName: currentUser?.lastName || "",
+              email:currentUser?.email || "",
               password: "",
-              image: "",
-              city: "",
-              bio: "",
+              image: currentUser?.image || "",
+              city: currentUser?.city || "",
+              bio: currentUser?.bio || "",
             }}
             validationSchema={SignupSchema}
             onSubmit={(values, actions) => {
-              updateProfile(currentUser._id,values,bearer);
+              updateProfile(currentUser._id,values);
               actions.resetForm();
               actions.setSubmitting(false);
             }}
@@ -161,6 +161,18 @@ export default function EditModal({ open, handleClose }) {
                   sx={newPostStyle}
                 />
                 <TextField
+                  label="City"
+                  name="city"
+                  type="text"
+                  variant="outlined"
+                  value={values.city}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  helperText={touched.city && errors.city}
+                  error={touched.city && Boolean(errors.city)}
+                  sx={newPostStyle}
+                />
+                <TextField
                   label="Password"
                   name="password"
                   id="password"
@@ -192,9 +204,9 @@ export default function EditModal({ open, handleClose }) {
                 <Button
                   type="submit"
                   variant="contained"
-                  disabled={isSubmitting}
+                  
                 >
-                  {isSubmitting ? "Loading..." : "Sign Up"}
+                  {isSubmitting ? "Loading..." : "Save Profile"}
                 </Button>
               </Box>
             </Form>

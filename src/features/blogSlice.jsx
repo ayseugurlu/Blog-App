@@ -12,7 +12,7 @@ const blogSlice = createSlice({
         comments: [],
         myBlogs:[],
         singleBlog:[],
-        like: ""
+        
 
     },
     reducers: {
