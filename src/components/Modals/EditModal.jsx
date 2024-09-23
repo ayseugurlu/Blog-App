@@ -204,6 +204,7 @@ export default function EditModal({ open, handleClose }) {
                 <Button
                   type="submit"
                   variant="contained"
+                  onClick={handleClose}
                   
                 >
                   {isSubmitting ? "Loading..." : "Save Profile"}

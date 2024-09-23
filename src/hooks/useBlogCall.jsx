@@ -13,12 +13,12 @@ const axiosWithToken=useAxios()
 
 
 
-    const getBlogData = async(endpoint) => {
+    const getBlogData = async(endpoint,page) => {
         dispatch(fetchStart())
 
         try {
-            const {data} = await axiosPublic.get(endpoint)
-            // console.log(data);
+            const {data} = await axiosPublic.get(`${endpoint}/?limit=4&page=${page}`)
+            console.log(data);
             dispatch(getBlogSuccess({data, endpoint}))
         } catch (error) {
             console.log(error);

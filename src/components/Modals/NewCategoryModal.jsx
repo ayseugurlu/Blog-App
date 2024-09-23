@@ -5,8 +5,8 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { TextField } from "@mui/material";
 import { Form, Formik } from "formik";
-import { newPostStyle } from "../styles/globalStyle";
-import useBlogCall from "../hooks/useBlogCall";
+import { newPostStyle } from "../../styles/globalStyle";
+import useBlogCall from "../../hooks/useBlogCall";
 
 const style = {
   position: "absolute",

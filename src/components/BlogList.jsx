@@ -23,34 +23,50 @@ import ReadMoreRoundedIcon from '@mui/icons-material/ReadMoreRounded';
 import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
 
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 const BlogList = () => {
-  const { getBlogData, addRemoveLike, getLike } = useBlogCall();
-  const {  blogs, like } = useSelector((state) => state.blog);
+  const { getBlogData} = useBlogCall();
+  const {  blogs } = useSelector((state) => state.blog);
   const {currentUser} = useSelector(state => state.auth)
 
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 const naviagte = useNavigate()
-  const handleLike = (id) => {
-    getLike(id);
-  };
+ 
 
-  // console.log(blogs);
+const [page, setPage] = useState(1)
+
+console.log(page);
+
+const handlePageChange = (event,value) => {
+  // console.log(value);
+
+  setPage(value)
+ 
+  
+}
+
+  console.log(blogs);
+
+  let pagiCount = Math.ceil(Number(blogs?.details?.totalRecords)/5)
+
+  // console.log(pagiCount);
+  // console.log(blogs?.details.totalRecords);
   
 
   useEffect(() => {
-    getBlogData("blogs");
+    getBlogData("blogs",page);
    
-  }, []);
+  }, [page]);
 
   return (
     <Container
       maxWidth="lg"
       sx={{ backgroundColor: "secondary.contrastText", padding: 5, borderRadius: 3 }}
     >
-      {blogs.map((blog) => (
+      {blogs?.data?.map((blog) => (
         <Card
           key={blog._id}
           component="div"
@@ -139,8 +155,10 @@ const naviagte = useNavigate()
           
         </Card>
       ))}
-      <Stack spacing={2} sx={{ margin: "auto" }}>
-        <Pagination count={10} color="warning" />
+      <Stack spacing={2} sx={{  display: "flex", 
+    justifyContent: "center", 
+    alignItems: "center",  }}>
+        <Pagination count={pagiCount} page={page} onChange={handlePageChange} color="primary" />
       </Stack>
     </Container>
   );
