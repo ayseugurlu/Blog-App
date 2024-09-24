@@ -136,9 +136,7 @@ const MyBlogs = () => {
           </CardContent>
         </Card>
       ))}
-      <Stack spacing={2} sx={{ margin: "auto" }}>
-        <Pagination count={10} color="warning" />
-      </Stack>
+      
     </Container>
   );
 };

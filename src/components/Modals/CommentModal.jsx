@@ -40,7 +40,7 @@ export default function CommentModal({
   _id
 }) {
  
-  const { postBlogData} = useBlogCall();
+  const { postBlogData,getSingleData} = useBlogCall();
 
  console.log(comments);
 

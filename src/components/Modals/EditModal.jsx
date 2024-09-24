@@ -62,7 +62,7 @@ export default function EditModal({ open, handleClose }) {
 
           <Formik
             initialValues={{
-              username: currentUser?.usename || "",
+              username: currentUser?.username || "",
               firstName: currentUser?.firstName || "",
               lastName: currentUser?.lastName || "",
               email:currentUser?.email || "",
@@ -74,6 +74,7 @@ export default function EditModal({ open, handleClose }) {
             validationSchema={SignupSchema}
             onSubmit={(values, actions) => {
               updateProfile(currentUser._id,values);
+              handleClose()
               actions.resetForm();
               actions.setSubmitting(false);
             }}
@@ -204,8 +205,6 @@ export default function EditModal({ open, handleClose }) {
                 <Button
                   type="submit"
                   variant="contained"
-                  onClick={handleClose}
-                  
                 >
                   {isSubmitting ? "Loading..." : "Save Profile"}
                 </Button>

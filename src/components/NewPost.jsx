@@ -136,7 +136,7 @@ export default function NewPost() {
                       color="secondary"
                       sx={newPostStyle}
                     >
-                      {categories.map((category) => (
+                      {categories?.data?.map((category) => (
                         <MenuItem key={category._id} value={category._id}>
                           {category.name}
                         </MenuItem>

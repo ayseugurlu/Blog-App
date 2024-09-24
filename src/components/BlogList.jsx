@@ -38,22 +38,21 @@ const naviagte = useNavigate()
 
 const [page, setPage] = useState(1)
 
-console.log(page);
+
 
 const handlePageChange = (event,value) => {
-  // console.log(value);
-
   setPage(value)
- 
-  
+
 }
 
   console.log(blogs);
+console.log(page);
 
-  let pagiCount = Math.ceil(Number(blogs?.details?.totalRecords)/5)
 
-  // console.log(pagiCount);
-  // console.log(blogs?.details.totalRecords);
+  let pagiCount =Math.ceil(Number(blogs?.details?.totalRecords)/5) || 0 ;
+
+ 
+
   
 
   useEffect(() => {
@@ -81,6 +80,7 @@ const handlePageChange = (event,value) => {
         >
           <CardMedia
             image={blog?.image}
+            component="img"
             sx={{
               
               width: "100%",
@@ -99,7 +99,7 @@ const handlePageChange = (event,value) => {
             }}
           >
             <Typography variant="h6" component="h2">
-              {blog?.title}{" "}
+              {blog?.title}
             </Typography>
             <Typography
               variant="body2"
