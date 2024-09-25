@@ -58,7 +58,9 @@ const MenuListItems = () => {
   return (
     <div sx={{bgcolor:"primary.main"}}>
      
-      <Box component="img" src="https://cdn.pixabay.com/photo/2016/08/16/01/31/colors-1596915_1280.png" sx={{width:"70px",mt: 3, ml:6}}/>
+      <Box component="img" src="https://cdn.pixabay.com/photo/2016/08/16/01/31/colors-1596915_1280.png" sx={{width:"70px",mt: 3, ml:6,cursor:"pointer"}}
+        onClick={()=>navigate("/")}
+      />
       <List>
         {links.map((item, index) => (
           <ListItem key={item.title} disablePadding>

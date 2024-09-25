@@ -17,7 +17,7 @@ const axiosWithToken=useAxios()
       let url = endpoint;
       try {
         if(page){
-          url =`${endpoint}/?limit=5&page=${page}`
+          url =`${endpoint}/?limit=3&page=${page}`
         }
           const {data} = await axiosPublic.get(url)
 

@@ -21,9 +21,10 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import { btnStyle } from "../styles/globalStyle";
 import ReadMoreRoundedIcon from '@mui/icons-material/ReadMoreRounded';
 import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
-
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+
+const limit = 3
 
 const BlogList = () => {
   const { getBlogData} = useBlogCall();
@@ -49,7 +50,7 @@ const handlePageChange = (event,value) => {
 console.log(page);
 
 
-  let pagiCount =Math.ceil(Number(blogs?.details?.totalRecords)/5) || 0 ;
+  let pagiCount =Math.ceil(Number(blogs?.details?.totalRecords)/limit) || 0 ;
 
  
 
@@ -82,8 +83,10 @@ console.log(page);
             image={blog?.image}
             component="img"
             sx={{
-              
+              height: { xs: "200px", sm: "400px" },
               width: "100%",
+              objectFit:"contain",
+              maxWidth:"400px",
               padding: { xs: 9, md: 5 },
               
             }}

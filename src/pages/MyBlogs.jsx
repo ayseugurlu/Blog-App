@@ -63,6 +63,7 @@ const MyBlogs = () => {
             sx={{
               height: { xs: "200px", sm: "400px" },
               width: "100%",
+              maxWidth:"400",
               objectFit: "contain",
             }}
           />

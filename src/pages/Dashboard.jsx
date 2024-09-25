@@ -101,8 +101,10 @@ function Dashboard(props) {
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 fontSize: "30px",
-                fontWeight: "700", // Yazı boyutunu büyütebiliriz
+                fontWeight: "700", 
+                cursor:"pointer"
               }}
+              onClick={() =>navigate("/")}
             >
               Erzählt Was
             </Box>
