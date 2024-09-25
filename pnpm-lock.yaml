@@ -35,9 +35,6 @@ importers:
       formik:
         specifier: ^2.4.6
         version: 2.4.6(react@18.3.1)
-      moment:
-        specifier: ^2.30.1
-        version: 2.30.1
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -3187,7 +3184,8 @@ snapshots:
     dependencies:
       brace-expansion: 1.1.11
 
-  moment@2.30.1: {}
+  moment@2.30.1:
+    optional: true
 
   ms@2.1.3: {}
 
