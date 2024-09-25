@@ -14,7 +14,7 @@ import Detail from "../pages/Detail";
 const AppRouter = () => {
   return (
     <BrowserRouter>
-      {/* <Dashboard/> */}
+      
       <Routes>
         <Route path="/" element={<Dashboard />}>
           <Route index element={<Home />} />
