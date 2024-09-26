@@ -36,7 +36,7 @@ const MyBlogs = () => {
   const { getMyBlogData } = useBlogCall();
 
   useEffect(() => {
-    getMyBlogData(`blogs/?author=${currentUser._id}`);
+    getMyBlogData(`blogs/?author=${currentUser?._id}`);
   }, []);
 
   return (
