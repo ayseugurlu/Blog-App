@@ -34,7 +34,7 @@ const Detail = () => {
 
   console.log(singleBlog);
   return (
-    <Container maxWidth="md">
+    <Container maxWidth="md" sx={{height:"100vh"}}>
       <Card sx={{ padding: 5 }}>
         <Typography variant="h4" align="center" mb={3}>
           {singleBlog?.title}

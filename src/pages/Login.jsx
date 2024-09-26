@@ -9,7 +9,7 @@ import LoginForm, { LoginSchema } from '../components/LoginForm'
 const Login = () => {
   const { login } = useAuthCall()
   return (
-    <Container maxWidth="xl">
+    <Container maxWidth="xl" sx={{height:"100vh"}}>
 
     <Grid2 
     container

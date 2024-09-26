@@ -4,8 +4,8 @@ import { Card, CardContent, CardMedia, Container, Typography } from '@mui/materi
 
 const About = () => {
   return (
-    <Container maxWidth="md" sx={{display:"flex",justifyContent:"center" ,mt:15}}>
-      <Card sx={{padding:5,display:"flex" ,justifyContent:"center",alignItems:"center",backgroundColor:"primary.main",color:"secondary.contrastText",borderRadius:5}}>
+    <Container maxWidth="md" sx={{display:"flex",justifyContent:"center" ,mt:15,height:"100vh"}}>
+      <Card sx={{padding:5,display:"flex" ,justifyContent:"center",alignItems:"center",backgroundColor:"primary.main",color:"secondary.contrastText",borderRadius:5,height:"500px"}}>
       <CardMedia image={profil} sx={{height:"300px", width:"250px"}}/>
       <CardContent>
         <Typography variant='h5'>About Software Developer <Typography variant='h4' color="success" component="span">Ayse Ugurlu</Typography></Typography>

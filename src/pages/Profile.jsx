@@ -60,7 +60,7 @@ const Profile = () => {
   }, [page]);
 
   return (
-    <Container maxWidth="xl">
+    <Container maxWidth="xl" sx={{height: !show && "100vh"}}>
       <Card
         sx={{
           textAlign: "center",

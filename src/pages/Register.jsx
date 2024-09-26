@@ -10,7 +10,7 @@ const Register = () => {
 
   const {register} = useAuthCall()
   return (
-    <Container maxWidth="xl">
+    <Container maxWidth="xl" sx={{height:"100vh"}}>
 
         <Grid2 
         container

@@ -50,13 +50,14 @@ export default function NewPost() {
       p: 4,
       borderRadius: 5,
       boxShadow: "4px 4px  20px black",
+      height:"90vh"
     }}>
       <Grid2 container>
         <Grid2
           size={{ xs: 12 }}
           
         >
-          <Typography align="center" mb={2} variant="h5" component="h2">
+          <Typography align="center" my={5} mx={3} variant="h5" component="h2">
             New Post
           </Typography>
           <Formik
@@ -174,7 +175,7 @@ export default function NewPost() {
 
           <Toolbar />
         </Grid2>
-        <Grid2 size={{ xs: 12 }} sx={{ textAlign: "center", mt: 10 }}>
+        <Grid2 size={{ xs: 12 }} sx={{ textAlign: "center", mt: 20 }}>
           <Typography
             variant="body1"
             component="div"

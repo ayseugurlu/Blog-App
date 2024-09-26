@@ -42,7 +42,7 @@ const MyBlogs = () => {
   return (
     <Container
       maxWidth="lg"
-      sx={{ backgroundColor: "primary.contrastText", padding: 5, borderRadius: 3 }}
+      sx={{ backgroundColor: "primary.contrastText", padding: 5, borderRadius: 3,height:"100vh" }}
     >
       {myBlogs?.map((blog) => (
         <Card
