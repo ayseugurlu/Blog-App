@@ -110,7 +110,7 @@ function Dashboard(props) {
             </Box>
           </Typography>
 
-          {currentUser ? (
+          {currentUser?.username ? (
             <Box sx={{ marginLeft: "auto",display:"flex", justifyContent:"center", alignItems:"center", gap:2}}>
             <Typography variant="body1" sx={{color:"white"}}> {currentUser.username}</Typography>
               <Tooltip title="Open settings">
