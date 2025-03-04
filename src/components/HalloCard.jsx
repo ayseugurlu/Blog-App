@@ -15,19 +15,13 @@ const HalloCard = () => {
         <Typography variant='h4'>Hello {currentUser?.firstName ? `${currentUser?.firstName}!` : ""}</Typography>
         Explore insights, tips, and stories, and feel free to share your own thoughts and experiences with us.
     </Typography>
-
     {currentUser ? (<Button variant='contained' sx={{marginTop:3}}
     onClick={() => navigate("/newpost")}>Write New Post</Button>) : (<Button variant='contained' sx={{marginTop:3}}
     onClick={() => navigate("/login")}>Login</Button>)}
     </Box>
-
     <Box component="div">
       <Box component="img" src={foto} width="100px" height="100px"/>
     </Box>
-   
-    
-    
-
     </Container>
   )
 }
