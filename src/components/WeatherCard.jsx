@@ -35,10 +35,10 @@ const WeatherCard = () => {
     );
   }, []);
 
+  if(!dataWeather?.name && !dataWeather?.weather)return null;
+  
   return (
     <Container sx={{backgroundColor:"secondary.main",padding:3,borderRadius:3,minWidth:"150px",textAlign:"center"}}>
-      {dataWeather ? (
-        <>
           <Typography variant="h4">{dataWeather.name}</Typography>
           <Typography variant="h6">{dataWeather.weather[0].description}</Typography>
           <Box width="50px"
@@ -46,10 +46,6 @@ const WeatherCard = () => {
             src={`https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/${dataWeather.weather[0].icon}.svg`}
             alt={dataWeather.weather[0].description}
           />
-        </>
-      ) : (
-        <Typography>Loading weather data...</Typography>
-      )}
     </Container>
   );
 };
