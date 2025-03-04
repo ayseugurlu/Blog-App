@@ -12,7 +12,7 @@ const HalloCard = () => {
     <Container maxWidth="lg" sx={{backgroundColor:"primary.contrastText",p:3,borderRadius:3,display:"flex",justifyContent:"space-around", mb:3}}>
     <Box component="div">
        <Typography  component="div">
-        <Typography variant='h4'>Hello {currentUser ? `${currentUser.firstName}!` : ""}</Typography>
+        <Typography variant='h4'>Hello {currentUser?.firstName ? `${currentUser?.firstName}!` : ""}</Typography>
         Explore insights, tips, and stories, and feel free to share your own thoughts and experiences with us.
     </Typography>
 
